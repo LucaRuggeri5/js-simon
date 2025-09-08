@@ -38,3 +38,27 @@ randomNumbers.forEach(num => {
 });
 
 // Messaggio per la soluzione del gioco
+AnswerForm.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const inputs = AnswerForm.querySelectorAll("input");
+  const userNumbers = [];
+  for (let i = 0; i < inputs.length; i++) {
+    userNumbers.push(parseInt(inputs[i].value));
+  }
+
+  let correct = 0;
+  let guessed = [];
+
+  for (let i = 0; i < userNumbers.length; i++) {
+    for (let j = 0; j < randomNumbers.length; j++) {
+      if (userNumbers[i] === randomNumbers[j]) {
+        correct++;
+        guessed.push(userNumbers[i]);
+        break;
+      }
+    }
+  }
+
+  messaggio.textContent = "Hai indovinato " + correct + " numeri: " + guessed.join(", ");
+});
